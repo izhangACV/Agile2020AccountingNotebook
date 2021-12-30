@@ -6,7 +6,7 @@ import { Transaction, TransactionType } from '../../src/models/Transaction';
 
 const expect = chai.expect;
 
-describe('Credit transaction model', () => {
+describe('Credit account model', () => {
   it('Should be an object with value 0 and an empty transaction history on creation', async () => {
     const account = new Account();
     const value = await account.getValue();
@@ -16,7 +16,7 @@ describe('Credit transaction model', () => {
     expect(transactions.length).to.equal(0);
   });
 
-  it('Should throw when there are not enough founds for debit but accept credit', async () => {
+  it('Should throw when there are not enough funds for debit but accept credit', async () => {
     const account = new Account();
     const debit = new Transaction(TransactionType.DEBIT, 1);
     const credit = new Transaction(TransactionType.CREDIT, 1);
@@ -28,7 +28,7 @@ describe('Credit transaction model', () => {
       err = e;
     }
 
-    expect(err).to.be.a('Error', 'Not enough founds');
+    expect(err).to.be.a('Error', 'Not enough funds');
     expect(await account.commit(credit)).to.have.property('id');
   });
 

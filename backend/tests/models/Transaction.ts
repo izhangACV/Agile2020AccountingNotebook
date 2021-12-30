@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import chai = require('chai');
 import 'mocha';
 
@@ -28,6 +30,14 @@ describe('Credit transaction model', () => {
     expect(creditTransaction.effectiveDate).to.be.a('string');
 
     expect(creditTransaction.isConfirmed()).to.equal(true);
+  });
+});
+
+describe('Invalid transaction model', () => {
+  const creditTransaction = new Transaction(TransactionType.CREDIT, 60);
+
+  it('Should be an object with type, amount, id and effectiveDate', () => {
+    expect(creditTransaction).to.have.all.keys(['type', 'amount', 'id', 'effectiveDate']);
   });
 });
 

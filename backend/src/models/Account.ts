@@ -101,7 +101,7 @@ export class Account implements AccountInterface {
     try {
       await this.writerEntry();
 
-      if (!this.canConfirm(transaction)) throw new Error('Not enough founds');
+      if (!this.canConfirm(transaction)) throw new Error('Not enough funds');
 
       // update value
       if (transaction.type === TransactionType.DEBIT) this.value -= transaction.amount;
